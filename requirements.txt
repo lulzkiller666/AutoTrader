@@ -1,0 +1,25 @@
+# Core dependencies (ARM Mac compatible)
+numpy>=2.3.0
+pandas>=2.2.0
+yfinance>=0.2.60
+pandas-datareader>=0.10.0
+openai>=1.100.0
+python-dotenv
+schedule
+pytz
+psutil
+alpaca-py>=0.29.0
+
+# Professional Market Data APIs
+aiohttp>=3.8.2
+alpha-vantage>=3.0.0
+polygon-api-client>=1.15.3
+websockets>=14.2
+urllib3>=2.5.0
+
+# Terminal UI
+rich>=13.0.0
+
+# Visualization (optional - may need special handling on ARM Mac)
+# matplotlib>=3.8.0
+lxml

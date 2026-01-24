@@ -1,0 +1,54 @@
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+*.env.*
+!.env.example
+
+# Runtime data
+automated_trading/
+logs/
+*.log
+*.csv
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+env/
+venv/
+.venv/
+pip-log.txt
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+/tmp/
+
+# Databases
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Test coverage
+htmlcov/
+.coverage
+*.cover
