@@ -798,7 +798,7 @@ class DynamicUniverseManager:
         7. Persist to disk
 
         Returns:
-            True if refresh succeeded, False otherwise
+            True if refresh and cache persistence succeeded, False otherwise
         """
         try:
             logger.info("Starting universe refresh...")
@@ -867,11 +867,20 @@ class DynamicUniverseManager:
             # Recalculate tiers based on latest data
             self._recalculate_priority_tiers()
 
-            # Persist to disk
-            self.persist_universe()
-
-            # Update last refresh time
+            # Include this refresh's timestamp in the persisted snapshot.
+            previous_refresh = self.last_refresh
             self.last_refresh = datetime.now()
+            if not self.persist_universe():
+                # Keep refresh due so a failed cache write can be retried.
+                self.last_refresh = previous_refresh
+                logger.error("Universe refresh failed: cache persistence failed")
+                if ADVANCED_LOGGING:
+                    log_system("error", "Universe refresh failed", {
+                        "event": "universe_refresh_failed",
+                        "error": "Cache persistence failed",
+                        "timestamp": datetime.now().isoformat()
+                    })
+                return False
 
             refresh_duration_ms = (time.time() - refresh_start_time) * 1000
 
